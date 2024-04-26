@@ -112,6 +112,8 @@ int main(int argc, char* argv[])
 	string thisVar = "";
         if (tokens[0] == "i") // Establish "integer" variable
 	{
+		// NOTE: NEED TO MAKE SURE USER CANNOT USE "i", "p", "sum", yada yada..., as variable names
+
 		// Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
 		double value = 0;
             	
