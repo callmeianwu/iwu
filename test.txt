@@ -1,0 +1,14 @@
+3 4 + 2 *
+sum 1 2 3 4
+5 2 / 6 -
+max 10 20 5
+min 5 8 2
+int x = 5
+sum x 2
+int y = 4
+y = sum x y
+print y
+x y + 2 *
+//Hello there
+// hey
+print x //or dont
