@@ -112,15 +112,19 @@ int main(int argc, char* argv[])
 	string thisVar = "";
         if (tokens[0] == "int") 
 	{
-            double value = stod(tokens[3]);
-            variables[tokens[1]] = value;
-		cout << "Variable declared: " << tokens[1] << " = " << value << endl;
-		continue;
+		// Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
+		double value = 0;
+            	
+		thisVar = tokens[1];
+		variables[tokens[1]] = value;
+		//cout << "Variable declared: " << tokens[1] << " = " << value << endl;
+		
+		tokens.erase(tokens.begin(), tokens.begin() + 3);
         }
 	else if (variables.count(tokens[0]) && tokens[1] == "=") // This is going to check if the variable has already been declared 
 	{
 		thisVar = tokens[0];
-		cout << "Variable found: " << thisVar << endl;
+		//cout << "Variable found: " << thisVar << endl;
 		tokens.erase(tokens.begin(), tokens.begin() + 2); // Remove the variable name and the equals sign
 	}
 	else // I have this for ignoring comments, but want to make sure user doesn't have to put space between comment and "//"
@@ -208,11 +212,11 @@ int main(int argc, char* argv[])
             result = evaluateExpression(tokens);
         }
 	
-	// This remembers the variable to write out the result within later
+	// Changes the value of a variable if need-be
 	if (thisVar != "")
 	{
 		variables[thisVar] = result;
-		cout << "Variable changed: " << thisVar << " = " << result << endl;
+		//cout << "Variable changed: " << thisVar << " = " << result << endl;
             
 	}
 	

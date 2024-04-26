@@ -12,3 +12,5 @@ x y + 2 *
 //Hello there
 // hey
 print x //or dont
+int o = sum x y
+print o
