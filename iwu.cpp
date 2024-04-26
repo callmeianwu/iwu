@@ -88,6 +88,20 @@ double min(const vector<double>& values)
     return *min_element(values.begin(), values.end());
 }
 
+bool handleIfStatement(const vector<string>& tokens) {
+    string conditionExpr = tokens[1];
+    vector<string> conditionTokens = split(conditionExpr, '=');
+    string varName = conditionTokens[0];
+    double value = stod(conditionTokens[1]);
+    if (variables[varName] == value) {
+        vector<string> ifBlockTokens(tokens.begin() + 3, tokens.end());
+        double result = evaluateExpression(ifBlockTokens);
+        cout << "Condition met: " << " = " << result << endl;
+	return true;
+    }
+    return false;
+}
+
 // I think everyone knows what this does
 int main(int argc, char* argv[]) 
 {
@@ -110,7 +124,29 @@ int main(int argc, char* argv[])
         vector<string> tokens = split(line, ' ');
         // Check if the line is a variable declaration (Should fully work now...)
 	string thisVar = "";
-        if (tokens[0] == "i") // Establish "integer" variable
+	
+	// Allowing the user to print out : Right now it is just "p" for printing out result and "pl" for entire line
+	bool print = false;
+ 	for (auto it = tokens.begin(); it != tokens.end(); ) 
+	{
+        	if (*it == "pl") 
+		{
+            		it = tokens.erase(it);
+			cout << line << " : ";
+        	} 
+		else if (*it == "p") 
+		{
+            		print = true;
+			it = tokens.erase(it);
+        	} 
+		else 
+		{
+            		++it;
+        	}
+    	}
+
+	// Variable Checking
+	if (tokens[0] == "i") // Establish "integer" variable
 	{
 		// NOTE: NEED TO MAKE SURE USER CANNOT USE "i", "p", "sum", yada yada..., as variable names
 
@@ -140,7 +176,6 @@ int main(int argc, char* argv[])
 			comment = true;
 			break;
 		    }
-	
 		}
 
 		if (comment)
@@ -150,8 +185,15 @@ int main(int argc, char* argv[])
 	}
 
 
-        // This will evaluate everything in the line
+        // This will evaluate everything in the rest of the line
         double result;
+	if (tokens[0] == "if")
+	{
+		if (!handleIfStatement(tokens))
+		{
+			continue;
+		}
+	}
         if (tokens[0] == "sum") 
 	{
             tokens.erase(tokens.begin()); // Remove the "sum" command
@@ -203,12 +245,7 @@ int main(int argc, char* argv[])
             }
             result = min(values);
         } 
-	else if (tokens[0] == "p") // This will print out the value of a variable
-	{
-		string varName = tokens[1];
-		cout << varName << " = " << variables[varName] << endl;
-		continue;	
-	}
+
 	else 
 	{
             result = evaluateExpression(tokens);
@@ -219,11 +256,16 @@ int main(int argc, char* argv[])
 	{
 		variables[thisVar] = result;
 		//cout << "Variable changed: " << thisVar << " = " << result << endl;
-            
 	}
-	
+
+	if (print) // This will print out result
+	{
+		cout << result << endl;
+		continue;	
+	}
         // Output the result
-        cout << line << " = " << result << endl;
+        //cout << line << " = " << result << endl;
+	//cout << result << endl; // Doing this instead because if the user does not want to print, they do not have to.
     }
 
     // Close the input file

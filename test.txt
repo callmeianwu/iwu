@@ -12,5 +12,5 @@ x y + 2 *
 //Hello there
 // hey
 p x //or dont
-i o = sum x y
+pl p i o = sum x y
 p o
