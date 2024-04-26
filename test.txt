@@ -3,14 +3,14 @@ sum 1 2 3 4
 5 2 / 6 -
 max 10 20 5
 min 5 8 2
-int x = 5
+i x = 5
 sum x 2
-int y = 4
+i y = 4
 y = sum x y
-print y
+p y
 x y + 2 *
 //Hello there
 // hey
-print x //or dont
-int o = sum x y
-print o
+p x //or dont
+i o = sum x y
+p o

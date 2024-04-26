@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
         vector<string> tokens = split(line, ' ');
         // Check if the line is a variable declaration (Should fully work now...)
 	string thisVar = "";
-        if (tokens[0] == "int") 
+        if (tokens[0] == "i") // Establish "integer" variable
 	{
 		// Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
 		double value = 0;
@@ -201,10 +201,10 @@ int main(int argc, char* argv[])
             }
             result = min(values);
         } 
-	else if (tokens[0] == "print") // This is going to print out the value of a variable
+	else if (tokens[0] == "p") // This will print out the value of a variable
 	{
 		string varName = tokens[1];
-		cout << "Variable " << varName << " = " << variables[varName] << endl;
+		cout << varName << " = " << variables[varName] << endl;
 		continue;	
 	}
 	else 
@@ -221,7 +221,7 @@ int main(int argc, char* argv[])
 	}
 	
         // Output the result
-        cout << "Input: " << line << "\t Result: " << result << endl;
+        cout << line << " = " << result << endl;
     }
 
     // Close the input file
