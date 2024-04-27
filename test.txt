@@ -1,4 +1,4 @@
-3 4 + 2 * // Hi!
+3 4 + 2 *
 sum 1 2 3 4
 5 2 / 6 -
 max 10 20 5
@@ -6,12 +6,13 @@ min 5 8 2
 i x = 5
 sum x 2
 i y = 4
-y = sum x y
+y = sum x y // Sets y to the result of the sum!
 pl x = x y + 2 *
 pr x
 //Hello there
-// hey
 pl pr x
 pl pr y
 pl pr i o = sum x y
 pl pr o
+// Do this if you don't want "pl" to read out "pr"
+pr pl o

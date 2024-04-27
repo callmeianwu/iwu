@@ -28,6 +28,7 @@ vector<string> split(const string& str, char delimiter)
 }
 
 // This evaluates a mathematical expression in the discrete professor's favorite flavor - Reverse Polish Notation
+// This way the user does not need to use parantheses! (Hope they are fluent in RPN)
 double evaluateExpression(const vector<string>& tokens) 
 {
     stack<double> numbers;
@@ -88,6 +89,7 @@ double min(const vector<double>& values)
     return *min_element(values.begin(), values.end());
 }
 
+// Simple bool to check if conditions are met
 bool handleIfStatement(const vector<string>& tokens) {
     string conditionExpr = tokens[1];
     vector<string> conditionTokens = split(conditionExpr, '=');
@@ -127,20 +129,21 @@ int main(int argc, char* argv[])
 	
 	// Allowing the user to print out : Right now it is just "pr" for printing out result and "pl" for entire line
 	bool print = false;
- 	for (auto it = tokens.begin(); it != tokens.end(); ) 
+ 	for (auto it = tokens.begin(); it != tokens.end(); ) // Commands where order does not matter
 	{
-		if (*it == "pr") 
-		{
-            		print = true;
-			it = tokens.erase(it);
-			line.erase(line.find("pr"), 3);
-        	}
-		else if (*it == "pl") 
+		if (*it == "pl") 
 		{
 			 it = tokens.erase(it); // Erase "pl" from tokens
                         line.erase(line.find("pl"), 3);
                         cout << line;
-        	} 
+        	}
+		else if (*it == "pr") 
+		{
+            		print = true;
+			it = tokens.erase(it); // Erase "pr"
+			line.erase(line.find("pr"), 3);
+        	}
+	 
 		else 
 		{
             		++it;
@@ -150,25 +153,28 @@ int main(int argc, char* argv[])
 	// Variable Checking
 	if (tokens[0] == "i") // Establish "integer" variable
 	{
-		// NOTE: NEED TO MAKE SURE USER CANNOT USE "i", "p", "sum", yada yada..., as variable names
+		// (!) NOTE: NEED TO MAKE SURE USER CANNOT USE "i", "pr", "pl", "sum", yada yada..., as variable names
+		
 
-		// Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
 		double value = 0;
             	
 		thisVar = tokens[1];
 		variables[tokens[1]] = value;
-		//cout << "Variable declared: " << tokens[1] << " = " << value << endl;
-		
 		tokens.erase(tokens.begin(), tokens.begin() + 3);
+
+		// (-) Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
+		
         }
 	else if (variables.count(tokens[0]) && tokens[1] == "=") // This is going to check if the variable has already been declared 
 	{
 		thisVar = tokens[0];
-		//cout << "Variable found: " << thisVar << endl;
-		tokens.erase(tokens.begin(), tokens.begin() + 2); // Remove the variable name and the equals sign
+		tokens.erase(tokens.begin(), tokens.begin() + 2);
 	}
 	else // I have this for ignoring comments, but want to make sure user doesn't have to put space between comment and "//"
 	{
+		// (!) Notes for this: Maybe move this into where "pr" and "pl" are processed to allow for the following reasons:
+		// (!) Make it so if the user adds comment notation to beginning and end of a statement, it will remove all those tokens from the line.
+		// (!) This way, when the person prints the line, and they wanted to involve something in the print then it is possible to also just show things quickly
 		bool comment = false;
 		for (const string& token : tokens)
 		{
@@ -189,12 +195,15 @@ int main(int argc, char* argv[])
 
         // This will evaluate everything in the rest of the line
         double result;
+
+	// (!) (Might want to change if statements to not be line based and instead be character based)
 	if (tokens[0] == "if")
 	{
 		if (!handleIfStatement(tokens))
 		{
-			continue;
+			continue; // Move on to the next line if this is not met! 
 		}
+		// (-) Fall through if condition is met
 	}
         if (tokens[0] == "sum") 
 	{
@@ -250,14 +259,13 @@ int main(int argc, char* argv[])
 
 	else 
 	{
-            result = evaluateExpression(tokens);
+            result = evaluateExpression(tokens); // If you get this far, calculate what you got
         }
 	
-	// Changes the value of a variable if need-be
-	if (thisVar != "")
+	
+	if (thisVar != "") // If there is a variable, change it to the result
 	{
 		variables[thisVar] = result;
-		//cout << "Variable changed: " << thisVar << " = " << result << endl;
 	}
 
 	if (print) // This will print out result
@@ -265,9 +273,10 @@ int main(int argc, char* argv[])
 		cout << " -> " << result << endl;
 		continue;	
 	}
+
         // Output the result
-        //cout << line << " = " << result << endl;
-	//cout << result << endl; // Doing this instead because if the user does not want to print, they do not have to.
+        //(x) cout << line << " = " << result << endl;
+	//(x) cout << result << endl; 
     }
 
     // Close the input file
@@ -275,4 +284,3 @@ int main(int argc, char* argv[])
 
     return 0;
 }
-
