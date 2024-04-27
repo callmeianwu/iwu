@@ -1,4 +1,4 @@
-3 4 + 2 *
+3 4 + 2 * // Hi!
 sum 1 2 3 4
 5 2 / 6 -
 max 10 20 5
@@ -7,10 +7,10 @@ i x = 5
 sum x 2
 i y = 4
 y = sum x y
-p y
-x y + 2 *
+pl x = x y + 2 *
 //Hello there
 // hey
-p x //or dont
-pl p i o = sum x y
-p o
+pl pr x
+pl pr y
+pl pr i o = sum x y
+pl pr o

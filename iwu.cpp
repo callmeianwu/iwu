@@ -125,19 +125,21 @@ int main(int argc, char* argv[])
         // Check if the line is a variable declaration (Should fully work now...)
 	string thisVar = "";
 	
-	// Allowing the user to print out : Right now it is just "p" for printing out result and "pl" for entire line
+	// Allowing the user to print out : Right now it is just "pr" for printing out result and "pl" for entire line
 	bool print = false;
  	for (auto it = tokens.begin(); it != tokens.end(); ) 
 	{
-        	if (*it == "pl") 
-		{
-            		it = tokens.erase(it);
-			cout << line << " : ";
-        	} 
-		else if (*it == "p") 
+		if (*it == "pr") 
 		{
             		print = true;
 			it = tokens.erase(it);
+			line.erase(line.find("pr"), 3);
+        	}
+		else if (*it == "pl") 
+		{
+			 it = tokens.erase(it); // Erase "pl" from tokens
+                        line.erase(line.find("pl"), 3);
+                        cout << line;
         	} 
 		else 
 		{
@@ -260,7 +262,7 @@ int main(int argc, char* argv[])
 
 	if (print) // This will print out result
 	{
-		cout << result << endl;
+		cout << " -> " << result << endl;
 		continue;	
 	}
         // Output the result
