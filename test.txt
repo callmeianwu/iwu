@@ -8,6 +8,7 @@ sum x 2
 i y = 4
 y = sum x y
 pl x = x y + 2 *
+pr x
 //Hello there
 // hey
 pl pr x
