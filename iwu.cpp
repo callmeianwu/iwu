@@ -153,17 +153,23 @@ int main(int argc, char* argv[])
 	// Variable Checking
 	if (tokens[0] == "i") // Establish "integer" variable
 	{
-		// (!) NOTE: NEED TO MAKE SURE USER CANNOT USE "i", "pr", "pl", "sum", yada yada..., as variable names
-		
+		if (tokens[1] != "pr" && tokens[1] != "pl" && tokens[1] != "sum" && tokens[1] != "min" && tokens[1] != "max") // Prevent the usage of these as variable names
+		{
 
-		double value = 0;
-            	
-		thisVar = tokens[1];
-		variables[tokens[1]] = value;
+			double value = 0;
+        	    	
+			thisVar = tokens[1];
+			variables[tokens[1]] = value;
+
+			// (-) Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
+		
+		}
+		else
+		{
+			cout << "Cannot use these functions as variables!" << endl;	
+		}
+
 		tokens.erase(tokens.begin(), tokens.begin() + 3);
-
-		// (-) Realized it would be easier for readability to allow it to fall through no matter what (for purpose of setting variable equal to equation)
-		
         }
 	else if (variables.count(tokens[0]) && tokens[1] == "=") // This is going to check if the variable has already been declared 
 	{

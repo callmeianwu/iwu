@@ -16,3 +16,5 @@ pl pr i o = sum x y
 pl pr o
 // Do this if you don't want "pl" to read out "pr"
 pr pl o
+// Function names will not work as variable names:
+i sum = 4
