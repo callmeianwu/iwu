@@ -178,9 +178,6 @@ int main(int argc, char* argv[])
 	}
 	else // I have this for ignoring comments, but want to make sure user doesn't have to put space between comment and "//"
 	{
-		// (!) Notes for this: Maybe move this into where "pr" and "pl" are processed to allow for the following reasons:
-		// (!) Make it so if the user adds comment notation to beginning and end of a statement, it will remove all those tokens from the line.
-		// (!) This way, when the person prints the line, and they wanted to involve something in the print then it is possible to also just show things quickly
 		bool comment = false;
 		for (const string& token : tokens)
 		{

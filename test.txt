@@ -8,8 +8,7 @@ sum x 2
 i y = 4
 y = sum x y // Sets y to the result of the sum!
 pl x = x y + 2 *
-pr x
-//Hello there
+pr x // This will just print x
 pl pr x
 pl pr y
 pl pr i o = sum x y
