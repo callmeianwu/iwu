@@ -9,140 +9,131 @@
 ╰━━━┻╯╰┻╯╱╰━━━┻╯╰┻╯╰━━━╯
 ```
 
-# IWU - The Retro-Future Programming Language 🚀
+# IWU - RPN-Based Programming Language 🚀
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Cool Factor](https://img.shields.io/badge/cool_factor-over_9000-purple)
+![Stack Based](https://img.shields.io/badge/paradigm-stack_based-purple)
 
-*Because sometimes the old ways are the best ways* 🌟
+*Where RPN meets modern programming* 🌟
 
-[Getting Started](#getting-started) • [Documentation](#documentation) • [Examples](#examples) • [Contributing](#contributing)
+[Installation](#installation) • [Language Guide](#language-guide) • [Examples](#examples) • [Contributing](#contributing)
 
 </div>
 
-## 🕹️ What is IWU?
+## 🎯 About IWU
 
-IWU is a programming language that thinks different™. It combines the vintage charm of Reverse Polish Notation (RPN) with modern programming patterns. Think of it as if a 1970s calculator had a love child with Python! 
+IWU is a stack-based programming language that uses Reverse Polish Notation (RPN) for calculations. It combines the elegance of postfix notation with easy-to-use functions and a straightforward printing system.
 
-```
-     📟 RPN + 🚀 Modern Features = 💫 IWU
-```
+## 🚀 Key Features
 
-## ✨ Features That Make IWU Awesome
-
-### 🧮 Classic RPN Calculations
+### 📐 RPN (Reverse Polish Notation) Based
 ```ruby
-3 4 + 2 *    # Old school cool! Result: 14
+3 4 + 2 *    # (3 + 4) * 2 = 14
+5 2 / 6 -    # (5 / 2) - 6 = -3.5
 ```
 
-### 🎯 Dead-Simple Variable Declaration
+### 📦 Variable Declaration
 ```ruby
-i x = 4      # 'i' for initialize, because we're fancy
+i x = 4          # Initialize variable 'x'
+i y = 3 4 +      # Initialize 'y' with an RPN expression
+y = x y +        # Update existing variable
 ```
 
-### 🛠️ Built-in Swiss Army Knife Functions
+### 🔧 Built-in Functions
 ```ruby
-sum 1 2 3 4  # Adds numbers like it's nobody's business
-max 10 20 5  # Finds the champion
-min 5 8 2    # Discovers the underdog
+sum 1 2 3 4      # Calculate sum of numbers
+max 10 20 5      # Find maximum value
+min 5 8 2        # Find minimum value
 ```
 
-### 📢 Print When You Need It
+### 🖨️ Print Commands
 ```ruby
-pl "Look ma, I'm coding!"  # Prints a line
-pr x                       # Shows the result
-pl pr x                    # Does both because why not?
+pl x = 5         # Prints the line "x = 5"
+pr x             # Prints the value of x
+pl pr x          # Prints line with result (e.g., "x = 5 -> 5")
 ```
 
-## 🚀 Getting Started
-
-### 📥 Installation
+## 💻 Installation
 
 ```bash
-# Clone this bad boy
-git clone https://github.com/callmeianwu/iwu.git
-
-# Build like it's 1999
+# Compile the interpreter
 g++ iwu.cpp -o iwu
 
-# Run it like you mean it
-./iwu your_awesome_code.txt
+# Run your IWU program
+./iwu your_program.txt
 ```
 
-### 🎮 Your First IWU Program
+## 📖 Language Guide
 
-```ruby
-# saved as "hello_world.txt"
-i message = "Hello, World!"
-pl pr message
-```
+### Syntax Rules
 
-## 📖 Documentation
+1. **RPN Calculations**
+   - All mathematical expressions use postfix notation
+   - Operators: `+`, `-`, `*`, `/`
+   - Example: `5 3 + 2 *` equals `(5 + 3) * 2`
 
-### The IWU Cheatsheet
+2. **Variables**
+   - Must be declared with `i` prefix
+   - Can be updated after declaration
+   - Example:
+     ```ruby
+     i x = 5          # Declaration
+     x = x 2 +        # Update
+     ```
 
-| Command | Description | Example |
-|---------|------------|---------|
-| `i` | Variable declaration | `i x = 42` |
-| `pl` | Print line | `pl "Wassup!"` |
-| `pr` | Print result | `pr x` |
-| `sum` | Add numbers | `sum 1 2 3` |
-| `max` | Find maximum | `max 42 73` |
-| `min` | Find minimum | `min 7 11` |
+3. **Print Commands**
+   - `pl` - Print the entire line
+   - `pr` - Print the result
+   - Can be combined: `pl pr x`
+
+4. **Comments**
+   - Use `//` for line comments
+   - No space required between `//` and comment text
 
 ## 🌟 Examples
 
-### Calculator Mode
+### Basic Calculations
 ```ruby
-5 2 / 6 -         # Division and subtraction
-i result = 10 2 * # Store multiplication result
+3 4 + 2 *           # Stack-based calculation
+i result = 10 2 *   # Store in variable
+pl pr result        # Print result
 ```
 
-### Variable Magic
+### Function Usage
 ```ruby
 i x = 5
 i y = 4
-y = sum x y       # y now holds their sum
-pl pr y           # Show me the money!
+y = sum x y         # Use sum function
+pl pr y             # Show result
 ```
 
-## 🎨 Syntax Highlighting
-
-<div align="center">
-
+### Complex Program
+```ruby
+i a = 10
+i b = 5
+i c = a b + 2 *     # RPN expression
+pl pr c             # Print result
+sum a b c           # Use built-in function
 ```
-🎨 Coming soon to your favorite editor! 🎨
-```
 
-</div>
+## ⚠️ Important Notes
+
+1. Function names (`sum`, `min`, `max`, `pl`, `pr`) cannot be used as variable names
+2. All calculations must follow RPN syntax
+3. Variable declarations must use the `i` prefix
+4. Comments start with `//` and continue to end of line
 
 ## 🤝 Contributing
 
-1. Fork it (because sharing is caring)
-2. Create your feature branch (`git checkout -b feature/awesome-feature`)
-3. Commit your changes (`git commit -am 'Add some awesomeness'`)
-4. Push to the branch (`git push origin feature/awesome-feature`)
-5. Create a Pull Request (and wait for internet high-fives)
-
-## ⚠️ Known Limitations
-
-- Function names are sacred (no `i sum = 4`)
-- Strictly RPN for calculations (just like grandpa used to write)
-- Must use 'i' for variable declarations (we're not animals)
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📜 License
 
-MIT License - Go wild! (but please credit us) 
+MIT License - See LICENSE file for details
 
 <div align="center">
 
-```
-[1][2][3][+][-][*][/]
-```
-
-### Made with 💾 by developers, for developers
-
-*Remember: In a world of high-level languages, sometimes you need to keep it simple!*
+### Built with 💻 by developers, for RPN enthusiasts
 
 </div>
