@@ -61,7 +61,7 @@ pl pr x                    # Does both because why not?
 
 ```bash
 # Clone this bad boy
-git clone https://github.com/yourusername/iwu.git
+git clone https://github.com/callmeianwu/iwu.git
 
 # Build like it's 1999
 g++ iwu.cpp -o iwu
